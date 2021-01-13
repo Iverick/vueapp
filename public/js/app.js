@@ -271,7 +271,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
   data: Object.assign(model, {
     headerImageStyle: {
-      'background-image': 'url(/images/header.jpg)'
+      'background-image': 'url(' + model.images[0] + ')'
     },
     contracted: true,
     modalOpen: false
