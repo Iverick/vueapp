@@ -270,7 +270,7 @@ model = Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["a" /* populateAmenitiesAn
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('image-carousel', {
   props: ['images'],
 
-  template: '\n    <div class="image-carousel">\n      <img :src="images[index]" />\n      <div class="controls">\n        <carousel-control dir="left"></carousel-control>\n        <carousel-control dir="right"></carousel-control>\n      </div>\n    </div> ',
+  template: '\n    <div class="image-carousel">\n      <img :src="image" />\n      <div class="controls">\n        <carousel-control dir="left" @change-image="changeImage"></carousel-control>\n        <carousel-control dir="right" @change-image="changeImage"></carousel-control>\n      </div>\n    </div> ',
 
   data: function data() {
     return {
@@ -282,6 +282,22 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('image-carousel', {
   computed: {
     image: function image() {
       return this.images[this.index];
+    }
+  },
+
+  methods: {
+    changeImage: function changeImage(val) {
+      var newVal = this.index + parseInt(val);
+      if (newVal < 0) {
+        // Display last image
+        this.index = this.images.length - 1;
+      } else if (newVal === this.images.length) {
+        // Display first image
+        this.index = 0;
+      } else {
+        // Display image with an index equal to the given newValue 
+        this.index = newVal;
+      }
     }
   },
 

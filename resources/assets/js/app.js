@@ -10,10 +10,10 @@ Vue.component('image-carousel', {
 
   template: `
     <div class="image-carousel">
-      <img :src="images[index]" />
+      <img :src="image" />
       <div class="controls">
-        <carousel-control dir="left"></carousel-control>
-        <carousel-control dir="right"></carousel-control>
+        <carousel-control dir="left" @change-image="changeImage"></carousel-control>
+        <carousel-control dir="right" @change-image="changeImage"></carousel-control>
       </div>
     </div> `,
 
@@ -26,6 +26,23 @@ Vue.component('image-carousel', {
   computed: {
     image() {
       return this.images[this.index];
+    }
+  },
+
+  methods: {
+    changeImage(val) {
+      let newVal = this.index + parseInt(val);
+      if (newVal < 0) {
+        // Display last image
+        this.index = this.images.length - 1;
+      }
+      else if (newVal === this.images.length) {
+        // Display first image
+        this.index = 0;
+      } else {
+        // Display image with an index equal to the given newValue 
+        this.index = newVal;
+      }
     }
   },
 
@@ -49,6 +66,7 @@ Vue.component('image-carousel', {
     }
   }
 });
+
 
 var app = new Vue({
   el: '#app',
