@@ -214,3 +214,26 @@ body.modal-open {
   overflow: hidden;
   position: fixed;  
 }
+
+.image-carousel img { 
+  width:  100%; 
+}
+
+.image-carousel .controls { 
+  position: absolute; 
+  width: 100%; 
+  display: flex;
+  justify-content: space-between;
+}
+
+.carousel-control {
+  padding: 1rem; 
+  color: #ffffff;  
+  opacity: 0.85
+}
+
+@media (min-width: 744px) { 
+  .carousel-control { 
+    font-size: 3rem; 
+  } 
+}
