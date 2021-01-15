@@ -21,14 +21,9 @@
 
 <div id="app">
 
-  <div class="header">
-    <div 
-      class="header-img" 
-      v-bind:style="headerImageStyle"
-      v-on:click="modalOpen=true">
-        <button class="view-photos">View Photos</button>
-    </div>
-  </div> <!-- header -->
+  <header-image :image-url="images[0]" @header-clicked="openModal">
+    
+  </header-image>
 
   <div class="container">
     <div class="heading">
@@ -75,12 +70,10 @@
     </div> <!-- heading -->
   </div> <!-- container -->
 
-  <div id="modal" v-bind:class="{ show : modalOpen }">
-    <button v-on:click="modalOpen = false" class="modal-close">&times;</button>
-    <div class="modal-content">
-      <image-carousel :images="images"></image-carousel>
-    </div>
-  </div> <!-- #modal -->
+  <modal-window ref="imagemodal">
+    <image-carousel :images="images"></image-carousel>
+  </modal-window>
+
 </div> <!-- #app -->
 
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

@@ -371,6 +371,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ImageCarousel_vue__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ImageCarousel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_ImageCarousel_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ModalWindow_vue__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ModalWindow_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_ModalWindow_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_HeaderImage_vue__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_HeaderImage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_HeaderImage_vue__);
+
+
 
 
 
@@ -381,42 +387,24 @@ model = Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["a" /* populateAmenitiesAn
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
+
   components: {
-    ImageCarousel: __WEBPACK_IMPORTED_MODULE_3__components_ImageCarousel_vue___default.a
+    ImageCarousel: __WEBPACK_IMPORTED_MODULE_3__components_ImageCarousel_vue___default.a,
+    ModalWindow: __WEBPACK_IMPORTED_MODULE_4__components_ModalWindow_vue___default.a,
+    HeaderImage: __WEBPACK_IMPORTED_MODULE_5__components_HeaderImage_vue___default.a
   },
+
   data: Object.assign(model, {
     headerImageStyle: {
       'background-image': 'url(' + model.images[0] + ')'
     },
-    contracted: true,
-    modalOpen: false
+    contracted: true
   }),
 
   methods: {
-    escapeKeyListener: function escapeKeyListener(evt) {
-      if (evt.keyCode === 27 && this.modalOpen) {
-        this.modalOpen = false;
-      }
+    openModal: function openModal() {
+      this.$refs.imagemodal.modalOpen = true;
     }
-  },
-
-  watch: {
-    modalOpen: function modalOpen() {
-      var className = 'modal-open';
-      if (this.modalOpen) {
-        document.body.classList.add(className);
-      } else {
-        document.body.classList.remove(className);
-      }
-    }
-  },
-
-  created: function created() {
-    document.addEventListener('keyup', this.escapeKeyListener);
-  },
-
-  destroyed: function destroyed() {
-    document.removeEventListener('keyup', this.escapeKeyListener);
   }
 });
 
@@ -13617,6 +13605,281 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-ad9533f4", module.exports)
+  }
+}
+
+/***/ }),
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(63)
+}
+var normalizeComponent = __webpack_require__(14)
+/* script */
+var __vue_script__ = __webpack_require__(64)
+/* template */
+var __vue_template__ = __webpack_require__(65)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/components/ModalWindow.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-259396e8", Component.options)
+  } else {
+    hotAPI.reload("data-v-259396e8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      modalOpen: false
+    };
+  },
+
+
+  methods: {
+    escapeKeyListener: function escapeKeyListener(evt) {
+      if (evt.keyCode === 27 && this.modalOpen) {
+        this.modalOpen = false;
+      }
+    }
+  },
+
+  watch: {
+    modalOpen: function modalOpen() {
+      var className = 'modal-open';
+      if (this.modalOpen) {
+        document.body.classList.add(className);
+      } else {
+        document.body.classList.remove(className);
+      }
+    }
+  },
+
+  created: function created() {
+    document.addEventListener('keyup', this.escapeKeyListener);
+  },
+
+  destroyed: function destroyed() {
+    document.removeEventListener('keyup', this.escapeKeyListener);
+  }
+});
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: { show: _vm.modalOpen }, attrs: { id: "modal" } }, [
+    _c(
+      "button",
+      {
+        staticClass: "modal-close",
+        on: {
+          click: function($event) {
+            _vm.modalOpen = false
+          }
+        }
+      },
+      [_vm._v("×")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-content" }, [_vm._t("default")], 2)
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-259396e8", module.exports)
+  }
+}
+
+/***/ }),
+/* 66 */,
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(68)
+}
+var normalizeComponent = __webpack_require__(14)
+/* script */
+var __vue_script__ = __webpack_require__(69)
+/* template */
+var __vue_template__ = __webpack_require__(70)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/components/HeaderImage.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1e373f8e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1e373f8e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 69 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['image-url'],
+
+  computed: {
+    headerImageStyle: function headerImageStyle() {
+      return {
+        'background-image': 'url(' + this.imageUrl + ')'
+      };
+    }
+  }
+});
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "header" }, [
+    _c(
+      "div",
+      {
+        staticClass: "header-img",
+        style: _vm.headerImageStyle,
+        on: {
+          click: function($event) {
+            return _vm.$emit("header-clicked")
+          }
+        }
+      },
+      [_c("button", { staticClass: "view-photos" }, [_vm._v("View Photos")])]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1e373f8e", module.exports)
   }
 }
 
