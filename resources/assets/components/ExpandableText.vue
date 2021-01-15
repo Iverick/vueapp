@@ -22,14 +22,6 @@
 
 
 <style> 
-  .about { 
-    margin-top: 2em;  
-  } 
-
-  .about h3 { 
-    font-size: 22px; 
-  } 
-
   .about p { 
     white-space:  pre-wrap; 
   }

@@ -20,46 +20,10 @@
 </div>
 
 <div id="app">
-
-  <header-image :image-url="images[0]" @header-clicked="openModal">
-
-  </header-image>
-
-  <div class="container">
-    <div class="heading">
-      <h1>@{{ title }}</h1>
-      <p>@{{ address }}</p>
-      <hr>
-
-      <div class="about">
-        <h3>About this listing</h3>
-        <expandable-text>@{{ about }}</expandable-text>
-      </div> <!-- about -->
-
-      <div class="lists">
-        <feature-list title="Amenities" :items="amenities">
-          <template slot-scope="amenity">
-            <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
-            <span>@{{ amenity.title }}</span>
-          </template>
-        </feature-list><!-- feature-list amenities-->
-
-        <feature-list title="Prices" :items="prices">
-          <template slot-scope="price">
-            @{{ price.title }}:
-            <strong>@{{ price.value }} </strong>
-          </template>
-        </feature-list><!-- feature-list prices-->
-      </div> <!-- lists -->
-
-    </div> <!-- heading -->
-  </div> <!-- container -->
-
-  <modal-window ref="imagemodal">
-    <image-carousel :images="images"></image-carousel>
-  </modal-window>
-
-</div> <!-- #app -->
+  <listing>
+    
+  </listing>
+</div>
 
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 

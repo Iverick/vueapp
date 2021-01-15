@@ -1,4 +1,11 @@
 
+.about { 
+  margin-top: 2em;
+}
+.about h3 { 
+  font-size: 22px;
+} 
+
 .image-carousel {
   height: 100%; 
   margin-top: -12vh;  
@@ -137,12 +144,6 @@ hr {
 }
 
 
-.about { 
-  margin-top: 2em;
-}
-.about h3 { 
-  font-size: 22px;
-}
 .about p { 
   white-space:  pre-wrap;
 }
