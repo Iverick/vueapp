@@ -215,17 +215,6 @@ body.modal-open {
   position: fixed;  
 }
 
-.image-carousel img { 
-  width:  100%; 
-}
-
-.image-carousel .controls { 
-  position: absolute; 
-  width: 100%; 
-  display: flex;
-  justify-content: space-between;
-}
-
 .carousel-control {
   padding: 1rem; 
   color: #ffffff;  
