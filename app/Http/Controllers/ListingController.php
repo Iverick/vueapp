@@ -22,6 +22,8 @@ class ListingController extends Controller
         
         return $model;
     }
+
+    
     
     public function get_listing_api(Listing $listing) {
         $model = $listing->toArray();
@@ -29,9 +31,18 @@ class ListingController extends Controller
         
         return response()->json($model);
     }
+
+    /*
+     * Displays a home page of the application
+     *
+     * @return view object.
+     */
+    public function get_home_web() {
+        return view ('app', ['model' => []]);
+    }
     
     /*
-     * Displays an app.blade.php view and provides $model object with it.
+     * Displays a listing view and provides $model object with it.
      * 
      * @return view object.
      */
