@@ -9971,8 +9971,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var model = JSON.parse(window.vuebnb_listing_model);
-model = Object(__WEBPACK_IMPORTED_MODULE_0__js_helpers__["a" /* populateAmenitiesAndPrices */])(model);
+var serverData = JSON.parse(window.vuebnb_server_data);
+var model = Object(__WEBPACK_IMPORTED_MODULE_0__js_helpers__["b" /* populateAmenitiesAndPrices */])(serverData.listing);
 
 
 
@@ -10006,8 +10006,8 @@ model = Object(__WEBPACK_IMPORTED_MODULE_0__js_helpers__["a" /* populateAmenitie
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return populateAmenitiesAndPrices; });
-/* unused harmony export groupByCountry */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return populateAmenitiesAndPrices; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return groupByCountry; });
 var amenities = new Map();
 amenities.set('amenity_wifi', { title: 'Wireless Internet', icon: 'fa-wifi' });
 amenities.set('amenity_pets_allowed', { title: 'Pets Allowed', icon: 'fa-paw' });
@@ -14072,7 +14072,7 @@ if (inBrowser && window.Vue) {
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(95)
 /* template */
 var __vue_template__ = __webpack_require__(94)
 /* template functional */
@@ -14131,6 +14131,30 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-317e2a9a", module.exports)
   }
 }
+
+/***/ }),
+/* 95 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_helpers__ = __webpack_require__(54);
+//
+//
+//
+//
+//
+//
+//
+
+
+var serverData = JSON.parse(window.vuebnb_server_data);
+var listing_groups = Object(__WEBPACK_IMPORTED_MODULE_0__js_helpers__["a" /* groupByCountry */])(serverData.listings);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return { listing_groups: listing_groups };
+  }
+});
 
 /***/ })
 /******/ ]);

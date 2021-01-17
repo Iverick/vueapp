@@ -10,21 +10,22 @@ class ListingController extends Controller
 {
     /*
      * Helper function.
+     *
+     * Puts Listing model inside a collection.
+     * Adds 4 images to the model array.
      * 
-     * Add 4 images from local resources to a corresponding model.
-     * 
-     * @return $model object.
+     * @return listing collection.
      */
-    private function add_image_urls($model, $id) {
+    private function get_listing(Listing $listing) {
+        $model = $listing->toArray();
+
         for ($i = 1; $i < 5; $i++) {
-            $model['image_' . $i] = asset('images/' . $id . '/Image_' . $i . '.jpg');
+            $model['image_' . $i] = asset('images/' . $listing->id . '/Image_' . $i . '.jpg');
         }
-        
-        return $model;
+
+        return collect(['listing' => $model]);
     }
 
-    
-    
     public function get_listing_api(Listing $listing) {
         $model = $listing->toArray();
         $model = $this->add_image_urls($model, $listing->id);
@@ -38,7 +39,15 @@ class ListingController extends Controller
      * @return view object.
      */
     public function get_home_web() {
-        return view ('app', ['model' => []]);
+        $collection = Listing::all(['id', 'address', 'title', 'price_per_night']);
+        // Add an thumbnail image to the collection of Listings
+        $collection->transform(function ($listing) {
+            $listing->thumb = asset('images/' . $listing->id . '/Image_1_thumb.jpg');
+            return $listing;
+        });
+
+        $data = collect(['listings' => $collection->toArray()]);
+        return view ('app', ['data' => $data] );
     }
     
     /*
@@ -47,8 +56,7 @@ class ListingController extends Controller
      * @return view object.
      */
     public function get_listing_web(Listing $listing) {
-        $model = $listing->toArray();
-        $model = $this->add_image_urls($model, $listing->id);
-        return view('app', ['model' => $model]);
+        $data = $this->get_listing($listing);
+        return view('app', ['data' => $data]);
     }
 }
