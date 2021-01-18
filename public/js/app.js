@@ -9987,16 +9987,17 @@ if (false) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_helpers__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ImageCarousel_vue__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ImageCarousel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ImageCarousel_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ModalWindow_vue__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ModalWindow_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ModalWindow_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HeaderImage_vue__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HeaderImage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__HeaderImage_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FeatureList_vue__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FeatureList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__FeatureList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ExpandableText_vue__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ExpandableText_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__ExpandableText_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_route_mixin__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ImageCarousel_vue__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ImageCarousel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ImageCarousel_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ModalWindow_vue__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ModalWindow_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ModalWindow_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__HeaderImage_vue__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__HeaderImage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__HeaderImage_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__FeatureList_vue__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__FeatureList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__FeatureList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ExpandableText_vue__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ExpandableText_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__ExpandableText_vue__);
 //
 //
 //
@@ -10046,8 +10047,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var serverData = JSON.parse(window.vuebnb_server_data);
-var model = Object(__WEBPACK_IMPORTED_MODULE_0__js_helpers__["b" /* populateAmenitiesAndPrices */])(serverData.listing);
 
 
 
@@ -10056,20 +10055,35 @@ var model = Object(__WEBPACK_IMPORTED_MODULE_0__js_helpers__["b" /* populateAmen
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_1__js_route_mixin__["a" /* default */]],
+
   data: function data() {
-    return Object.assign(model, {});
+    return {
+      title: null,
+      about: null,
+      address: null,
+      amenities: [],
+      prices: [],
+      images: []
+    };
   },
 
 
   components: {
-    ImageCarousel: __WEBPACK_IMPORTED_MODULE_1__ImageCarousel_vue___default.a,
-    ModalWindow: __WEBPACK_IMPORTED_MODULE_2__ModalWindow_vue___default.a,
-    HeaderImage: __WEBPACK_IMPORTED_MODULE_3__HeaderImage_vue___default.a,
-    FeatureList: __WEBPACK_IMPORTED_MODULE_4__FeatureList_vue___default.a,
-    ExpandableText: __WEBPACK_IMPORTED_MODULE_5__ExpandableText_vue___default.a
+    ImageCarousel: __WEBPACK_IMPORTED_MODULE_2__ImageCarousel_vue___default.a,
+    ModalWindow: __WEBPACK_IMPORTED_MODULE_3__ModalWindow_vue___default.a,
+    HeaderImage: __WEBPACK_IMPORTED_MODULE_4__HeaderImage_vue___default.a,
+    FeatureList: __WEBPACK_IMPORTED_MODULE_5__FeatureList_vue___default.a,
+    ExpandableText: __WEBPACK_IMPORTED_MODULE_6__ExpandableText_vue___default.a
   },
 
   methods: {
+    // Implement assignData function declared in the routeMixin
+    assignData: function assignData(_ref) {
+      var listing = _ref.listing;
+
+      Object.assign(this.$data, Object(__WEBPACK_IMPORTED_MODULE_0__js_helpers__["b" /* populateAmenitiesAndPrices */])(listing));
+    },
     openModal: function openModal() {
       this.$refs.imagemodal.modalOpen = true;
     }
@@ -14116,6 +14130,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_helpers__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ListingSummary_vue__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ListingSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ListingSummary_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__js_route_mixin__ = __webpack_require__(129);
 //
 //
 //
@@ -14130,39 +14145,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_3__js_route_mixin__["a" /* default */]],
+
   data: function data() {
     return { listing_groups: [] };
   },
 
 
-  components: {
-    ListingSummary: __WEBPACK_IMPORTED_MODULE_2__ListingSummary_vue___default.a
+  methods: {
+    assignData: function assignData(_ref) {
+      var listings = _ref.listings;
+
+      this.listing_groups = Object(__WEBPACK_IMPORTED_MODULE_1__js_helpers__["a" /* groupByCountry */])(listings);
+    }
   },
 
-  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
-    var serverData = JSON.parse(window.vuebnb_server_data);
-    if (to.path === serverData.path) {
-      var listing_groups = Object(__WEBPACK_IMPORTED_MODULE_1__js_helpers__["a" /* groupByCountry */])(serverData.listings);
-      next(function (component) {
-        return component.listing_groups = listing_groups;
-      });
-    } else {
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/').then(function (_ref) {
-        var data = _ref.data;
-
-        var listing_groups = Object(__WEBPACK_IMPORTED_MODULE_1__js_helpers__["a" /* groupByCountry */])(data.listings);
-        console.log('Loaded with AJAX!');
-        next(function (component) {
-          return component.listing_groups = listing_groups;
-        });
-      });
-    }
+  components: {
+    ListingSummary: __WEBPACK_IMPORTED_MODULE_2__ListingSummary_vue___default.a
   }
 });
 
@@ -15919,6 +15925,42 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+/* 129 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+
+
+function getData(to) {
+	return new Promise(function (resolve) {
+		var serverData = JSON.parse(window.vuebnb_server_data);
+		// If app encounters a change of the app route
+		if (!serverData.path || to.path !== serverData.path) {
+			// Load a data from the server using AJAX request
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api' + to.path).then(function (_ref) {
+				var data = _ref.data;
+
+				resolve(data);
+			});
+		} else {
+			resolve(serverData);
+		}
+	});
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+	beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+		getData(to).then(function (data) {
+			next(function (component) {
+				return component.assignData(data);
+			});
+		});
+	}
+});
 
 /***/ })
 /******/ ]);
