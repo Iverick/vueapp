@@ -37,11 +37,24 @@ class ListingController extends Controller
         return $collection->merge(['path' => $request->getPathInfo() ]);
     }
 
-    public function get_listing_api(Listing $listing) {
-        $model = $listing->toArray();
-        $model = $this->add_image_urls($model, $listing->id);
-        
-        return response()->json($model);
+
+
+    /*
+     * Helper function.
+     *
+     * Extracts all object from the Listing model.
+     * 
+     * @return collection of Listing instances.
+     */
+    private function get_listing_summaries() {
+        $collection = Listing::all(['id', 'address', 'title', 'price_per_night']);
+        // Add an thumbnail image to the collection of Listings
+        $collection->transform(function ($listing) {
+            $listing->thumb = asset('images/' . $listing->id . '/Image_1_thumb.jpg');
+            return $listing;
+        });
+
+        return collect(['listings' => $collection->toArray()]);
     }
 
     /*
@@ -50,16 +63,19 @@ class ListingController extends Controller
      * @return view object.
      */
     public function get_home_web(Request $request) {
-        $collection = Listing::all(['id', 'address', 'title', 'price_per_night']);
-        // Add an thumbnail image to the collection of Listings
-        $collection->transform(function ($listing) {
-            $listing->thumb = asset('images/' . $listing->id . '/Image_1_thumb.jpg');
-            return $listing;
-        });
-
-        $data = collect(['listings' => $collection->toArray()]);
+        $data = $this->get_listing_summaries();
         $data = $this->add_meta_data($data, $request);
         return view ('app', ['data' => $data] );
+    }
+
+    /*
+     * Serves AJAX request when the home page route of the API application called
+     *
+     * @return JSON object.
+     */
+    public function get_home_api() {
+        $data = $this->get_listing_summaries();
+        return response()->json($data);
     }
     
     /*
@@ -71,5 +87,12 @@ class ListingController extends Controller
         $data = $this->get_listing($listing);
         $data = $this->add_meta_data($data, $request);
         return view('app', ['data' => $data]);
+    }
+
+    public function get_listing_api(Listing $listing) {
+        $model = $listing->toArray();
+        $model = $this->add_image_urls($model, $listing->id);
+        
+        return response()->json($model);
     }
 }
