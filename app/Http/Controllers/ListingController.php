@@ -37,8 +37,6 @@ class ListingController extends Controller
         return $collection->merge(['path' => $request->getPathInfo() ]);
     }
 
-
-
     /*
      * Helper function.
      *
@@ -90,9 +88,7 @@ class ListingController extends Controller
     }
 
     public function get_listing_api(Listing $listing) {
-        $model = $listing->toArray();
-        $model = $this->add_image_urls($model, $listing->id);
-        
-        return response()->json($model);
+        $data = $this->get_listing($listing);
+        return response()->json($data);
     }
 }

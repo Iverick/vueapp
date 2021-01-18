@@ -1,17 +1,19 @@
 <template>
   <div class="listing-summary">
-    <div class="wrapper">
-      <div class="thumbnail" :style="backgroundImageStyle">
+    <router-link :to="{ name: 'listing', params: { listing: listing.id } }">
+      <div class="wrapper">
+        <div class="thumbnail" :style="backgroundImageStyle">
 
-      </div>
-      <div class="info title">
-        <span>{{ listing.price_per_night }}</span>
-        <span>{{ listing.title }}</span>
-        <div class="info address">
-          <span>{{ listing.address }}</span>
         </div>
-      </div> <!-- info title -->
-    </div> <!-- wrapper -->
+        <div class="info title">
+          <span>{{ listing.price_per_night }}</span>
+          <span>{{ listing.title }}</span>
+          <div class="info address">
+            <span>{{ listing.address }}</span>
+          </div>
+        </div> <!-- info title -->
+      </div> <!-- wrapper -->
+    </router-link>
   </div>
 </template>
 

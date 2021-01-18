@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <header-image :image-url="images[0]" @header-clicked="openModal">
+    <header-image v-if="images[0]" :image-url="images[0]" @header-clicked="openModal">
 
     </header-image>
 
@@ -65,7 +65,7 @@
         amenities: [], 
         prices: [], 
         images: [] 
-      };
+      }
     },
 
     components: {
