@@ -14,13 +14,22 @@
         </div> <!-- info title -->
       </div> <!-- wrapper -->
     </router-link>
+
+    <listing-save :id="listing.id">
+    </listing-save>
   </div>
 </template>
 
 
 <script>
+  import ListingSave from './ListingSave.vue';
+
   export default {
     props: ['listing'],
+
+    components: {
+      ListingSave
+    },
 
     computed: {
       backgroundImageStyle() {
@@ -34,6 +43,7 @@
 <style> 
 .listing-summary { 
   flex: 0 0 auto; 
+  position: relative;
 } 
 
 .listing-summary a { 
@@ -71,5 +81,12 @@
 .listing-summary .info.address { 
   font-size: 14px;
   line-height: 18px; 
+}
+
+@media (max-width: 400px) { 
+  .listing-summary .listing-save { 
+    left: 15px; 
+    right: auto; 
+  } 
 }
 </style>
