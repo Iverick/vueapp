@@ -22,8 +22,15 @@ let router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let serverData = JSON.parse(window.vuebnb_server_data);
-  // If it encounters a change in the app route
-  if (!serverData.path || to.path !== serverData.path) {
+  if (to.name === 'listing' 
+    ? store.getters.getListing(to.params.listing)
+    : store.state.listing_summaries.length > 0) {
+    // If there is proper data for the route in the store, then continue
+    // without loading additional data from the server.
+      next();
+  }
+  // If it encounters a change in the app route and needs to load data
+  else if (!serverData.path || to.path !== serverData.path) {
     // Load a data from the server using AJAX request and save it in the store
     axios.get(`/api${to.path}`).then(({ data }) => {
       store.commit('addData', {route: to.name, data});

@@ -68,11 +68,8 @@
 
     computed: {
       listing() {
-        let listing = this.$store.state.listings.find(
-          listing => listing.id == this.$route.params.listing
-        );
-
-        return populateAmenitiesAndPrices(listing);
+        return populateAmenitiesAndPrices(
+          this.$store.getters.getListing(this.$route.params.listing));
       }
     },
 
