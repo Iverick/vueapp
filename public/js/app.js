@@ -9918,7 +9918,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   state: {
     // Stores list of listings save by the user
-    saved: [],
+    saved: [3, 11],
     // Stores details about all listings
     listing_summaries: [],
     // Stores details about a specific listing
@@ -17852,13 +17852,49 @@ module.exports = Component.exports
 
 /***/ }),
 /* 148 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListingSummary_vue__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListingSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ListingSummary_vue__);
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    listings: function listings() {
+      var _this = this;
+
+      // Retrieve and item if its index is the saved array in the store
+      return this.$store.state.listing_summaries.filter(function (item) {
+        return _this.$store.state.saved.indexOf(item.id) > -1;
+      });
+    }
+  },
+
+  components: {
+    ListingSummary: __WEBPACK_IMPORTED_MODULE_0__ListingSummary_vue___default.a
+  }
+});
 
 /***/ }),
 /* 149 */
@@ -17868,7 +17904,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "home-container", attrs: { id: "saved" } }, [
+    _c("h2", [_vm._v("Saved listings")]),
+    _vm._v(" "),
+    _vm.listings.length
+      ? _c(
+          "div",
+          { staticClass: "listing-summaries" },
+          _vm._l(_vm.listings, function(listing) {
+            return _c("listing-summary", {
+              key: listing.id,
+              attrs: { listing: listing }
+            })
+          }),
+          1
+        )
+      : _c("div", [_vm._v("\n    No saved listings.\n  ")])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

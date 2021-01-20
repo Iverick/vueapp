@@ -317,14 +317,15 @@ hr {
 }
 }
 
-
-
-
-
-
-
-
-
-
-
-
+#saved .listing-summaries { 
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: left; 
+  overflow: hidden;
+}
+#saved .listing-summaries .listing-summary { 
+  padding-bottom: 30px;
+}
+.listing-summaries > .listing-summary {
+  margin-right: 15px;
+}

@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     // Stores list of listings save by the user
-    saved: [],
+    saved: [3, 11],
     // Stores details about all listings
     listing_summaries: [],
     // Stores details about a specific listing
