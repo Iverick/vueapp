@@ -1,7 +1,11 @@
 <template>
   <div>
 
-    <header-image v-if="images[0]" :image-url="images[0]" @header-clicked="openModal">
+    <header-image 
+      v-if="images[0]" 
+      :image-url="images[0]" 
+      @header-clicked="openModal" 
+      :id="id">
 
     </header-image>
 
@@ -59,6 +63,7 @@
 
     data() {
       return { 
+        id: null,
         title: null,
         about: null, 
         address: null, 

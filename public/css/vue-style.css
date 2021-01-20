@@ -130,10 +130,12 @@ body.modal-open {
 }
 .header .header-img { 
   background-repeat: no-repeat;  
-  background-size:  cover;  
-  background-position:  50% 50%;  
-  background-color:  #f5f5f5;  
-  height: 100%;
+  background-size: cover;  
+  background-position: 50% 50%;  
+  background-color: #f5f5f5;  
+  height: 100%; 
+  cursor: pointer;
+  position: relative;
 }
 .header .header-img button {
   font-size: 14px;
@@ -149,6 +151,25 @@ body.modal-open {
   position: absolute; 
   bottom: 20px; 
   left: 20px;
+}
+
+.listing-save { 
+  position: absolute; 
+  top: 20px; 
+  right: 20px; 
+  cursor: pointer;
+}
+.listing-save .fa-heart { 
+  color:  #ff5a5f;
+}
+.listing-save .fa-heart-o { 
+  color:  #ffffff;
+}
+.listing-save i {
+  padding-right: 4px;
+}
+.listing-save button .fa-heart-o {
+  color: #808080;
 }
 
 hr { 
@@ -294,17 +315,4 @@ hr {
     left: 15px; 
     right: auto;
 }
-}
-
-.listing-save { 
-  position: absolute; 
-  top: 20px; 
-  right: 20px; 
-  cursor: pointer;
-}
-.listing-save .fa-heart { 
-  color:  #ff5a5f;
-}
-.listing-save .fa-heart-o { 
-  color:  #ffffff;
 }
