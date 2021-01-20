@@ -2,33 +2,33 @@
   <div>
 
     <header-image 
-      v-if="images[0]" 
-      :image-url="images[0]" 
+      v-if="listing.images[0]" 
+      :image-url="listing.images[0]" 
       @header-clicked="openModal" 
-      :id="id">
+      :id="listing.id">
 
     </header-image>
 
     <div class="container">
       <div class="heading">
-        <h1>{{ title }}</h1>
-        <p>{{ address }}</p>
+        <h1>{{ listing.title }}</h1>
+        <p>{{ listing.address }}</p>
         <hr>
 
         <div class="about">
           <h3>About this listing</h3>
-          <expandable-text>{{ about }}</expandable-text>
+          <expandable-text>{{ listing.about }}</expandable-text>
         </div> <!-- about -->
 
         <div class="lists">
-          <feature-list title="Amenities" :items="amenities">
+          <feature-list title="Amenities" :items="listing.amenities">
             <template slot-scope="amenity">
               <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
               <span>{{ amenity.title }}</span>
             </template>
           </feature-list><!-- feature-list amenities-->
 
-          <feature-list title="Prices" :items="prices">
+          <feature-list title="Prices" :items="listing.prices">
             <template slot-scope="price">
               {{ price.title }}:
               <strong>{{ price.value }} </strong>
@@ -40,7 +40,7 @@
     </div> <!-- container -->
 
     <modal-window ref="imagemodal">
-      <image-carousel :images="images"></image-carousel>
+      <image-carousel :images="listing.images"></image-carousel>
     </modal-window>
 
   </div> <!-- #app -->
@@ -50,7 +50,6 @@
 
 <script>
   import { populateAmenitiesAndPrices } from '../js/helpers';
-  import routeMixin from '../js/route-mixin';
 
   import ImageCarousel from './ImageCarousel.vue';
   import ModalWindow from './ModalWindow.vue';
@@ -59,26 +58,22 @@
   import ExpandableText from './ExpandableText.vue';
 
   export default {
-    mixins: [ routeMixin ],
-
-    data() {
-      return { 
-        id: null,
-        title: null,
-        about: null, 
-        address: null, 
-        amenities: [], 
-        prices: [], 
-        images: [] 
-      }
-    },
-
     components: {
       ImageCarousel,
       ModalWindow,
       HeaderImage,
       FeatureList,
       ExpandableText
+    },
+
+    computed: {
+      listing() {
+        let listing = this.$store.state.listings.find(
+          listing => listing.id == this.$route.params.listing
+        );
+
+        return populateAmenitiesAndPrices(listing);
+      }
     },
 
     methods: {
