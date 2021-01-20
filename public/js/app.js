@@ -10757,6 +10757,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CustomFooter_vue__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CustomFooter_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CustomFooter_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SavedPage_vue__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SavedPage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SavedPage_vue__);
 //
 //
 //
@@ -10773,6 +10775,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -10932,6 +10942,18 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("h1", [_vm._v("vuebnb")])
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "links" }, [
+            _c(
+              "li",
+              [
+                _c("router-link", { attrs: { to: { name: "saved" } } }, [
+                  _vm._v("\n          Saved\n        ")
+                ])
+              ],
+              1
+            )
           ])
         ],
         1
