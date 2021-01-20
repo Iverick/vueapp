@@ -12021,6 +12021,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_HomePage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_HomePage_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ListingPage_vue__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ListingPage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ListingPage_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_SavedPage_vue__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_SavedPage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_SavedPage_vue__);
 
 
 
@@ -12031,9 +12033,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
 
 
 
+
 var router = new __WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */]({
   mode: 'history',
-  routes: [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_4__components_HomePage_vue___default.a, name: 'home' }, { path: '/listing/:listing', component: __WEBPACK_IMPORTED_MODULE_5__components_ListingPage_vue___default.a, name: 'listing' }],
+  routes: [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_4__components_HomePage_vue___default.a, name: 'home' }, { path: '/listing/:listing', component: __WEBPACK_IMPORTED_MODULE_5__components_ListingPage_vue___default.a, name: 'listing' }, { path: '/saved', component: __WEBPACK_IMPORTED_MODULE_6__components_SavedPage_vue___default.a, name: 'saved' }],
   scrollBehavior: function scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 };
   }
@@ -17771,6 +17774,109 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-317e2a9a", module.exports)
+  }
+}
+
+/***/ }),
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(147)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(148)
+/* template */
+var __vue_template__ = __webpack_require__(149)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/components/SavedPage.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-edbf703e", Component.options)
+  } else {
+    hotAPI.reload("data-v-edbf703e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-edbf703e", module.exports)
   }
 }
 
