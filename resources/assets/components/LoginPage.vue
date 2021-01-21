@@ -2,6 +2,7 @@
   <div id="login" class="login-container">
     <form role="form" method="POST" action="/login">
       <div class="form-control">
+        <input type="hidden" name="_token" :value="csrf_token">
         <input
           id="email" 
           type="email" 
@@ -29,7 +30,13 @@
 
 
 <script>
-  
+  export default {
+    data() {
+      return {
+        csrf_token: window.csrf_token
+      }
+    }
+  }
 </script>
 
 
