@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'saved'
     ];
 
     /**
@@ -26,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    /*
+     * Tells to serialize and deserialize 'saved' text when we read it or write it
+     * 
+     * @var array
+     */
+    protected $casts = ['saved' => 'array'];
 }
