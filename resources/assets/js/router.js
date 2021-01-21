@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 
 import HomePage from '../components/HomePage.vue';
 import ListingPage from '../components/ListingPage.vue';
+import LoginPage from '../components/LoginPage.vue';
 import SavedPage from '../components/SavedPage.vue';
 
 
@@ -15,7 +16,8 @@ let router = new VueRouter({
   routes: [
     { path: '/', component: HomePage, name: 'home' },
     { path: '/listing/:listing', component: ListingPage, name: 'listing' },
-    { path: '/saved', component: SavedPage, name: 'saved' }
+    { path: '/saved', component: SavedPage, name: 'saved' },
+    { path: '/login', component: LoginPage, name: 'login' }
   ],
   scrollBehavior (to, from, savedPosition) { 
     return { x: 0, y: 0 } 
@@ -26,9 +28,9 @@ router.beforeEach((to, from, next) => {
   let serverData = JSON.parse(window.vuebnb_server_data);
   if (to.name === 'listing' 
     ? store.getters.getListing(to.params.listing)
-    : store.state.listing_summaries.length > 0) {
-    // If there is proper data for the route in the store, then continue
-    // without loading additional data from the server.
+    : store.state.listing_summaries.length > 0 || to.name === 'login') {
+    // If there is proper data for the route in the store, or route is login, 
+    // then continue without loading additional data from the server.
       next();
   }
   // If it encounters a change in the app route and needs to load data
