@@ -30,14 +30,18 @@ class ListingController extends Controller
     /*
      * Helper function.
      *
-     * Adds the path and auth authentication status to the colletion.
+     * Adds the path;
+     * auth authentication status;
+     * assosiated with the user array of indices of saved images
+     * to the colletion.
      * 
      * @return collection.
      */
     private function add_meta_data($collection, $request) {
         return $collection->merge([
             'path' => $request->getPathInfo(),
-            'auth' => Auth::check()
+            'auth' => Auth::check(),
+            'saved' => Auth::check() ? Auth::user()->saved : []
         ]);
     }
 

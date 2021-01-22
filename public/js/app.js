@@ -10022,7 +10022,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   state: {
     // Stores list of listings save by the user
-    saved: [3, 11],
+    saved: [],
     // Stores details about all listings
     listing_summaries: [],
     // Stores details about a specific listing
@@ -12447,7 +12447,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */]({
 router.beforeEach(function (to, from, next) {
   var serverData = JSON.parse(window.vuebnb_server_data);
   if (to.name === 'listing' ? __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].getters.getListing(to.params.listing) : __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.listing_summaries.length > 0 || to.name === 'login') {
-    // If there is proper data for the route in the store, or route is login, 
+    // If there is proper data for the '/listing' route in the store, or route is login, 
     // then continue without loading additional data from the server.
     next();
   }
@@ -12461,7 +12461,11 @@ router.beforeEach(function (to, from, next) {
         next();
       });
     } else {
+      // Load data about the listing and array of saved listings from the server
       __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].commit('addData', { route: to.name, data: serverData });
+      serverData.saved.forEach(function (id) {
+        return __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].commit('toggleSaved', id);
+      });
       next();
     }
 });
