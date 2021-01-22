@@ -10024,7 +10024,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
     // Stores details about all listings
     listing_summaries: [],
     // Stores details about a specific listing
-    listings: []
+    listings: [],
+    // Authentication status
+    auth: false
   },
 
   mutations: {
@@ -10041,6 +10043,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
     addData: function addData(state, _ref) {
       var route = _ref.route,
           data = _ref.data;
+
+      if (data.auth) {
+        state.auth = data.auth;
+      }
 
       if (route === 'listing') {
         state.listings.push(data.listing);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Listing;
 
 
@@ -29,12 +30,15 @@ class ListingController extends Controller
     /*
      * Helper function.
      *
-     * Adds the path to the colletion.
+     * Adds the path and auth authentication status to the colletion.
      * 
      * @return collection.
      */
     private function add_meta_data($collection, $request) {
-        return $collection->merge(['path' => $request->getPathInfo() ]);
+        return $collection->merge([
+            'path' => $request->getPathInfo(),
+            'auth' => Auth::check()
+        ]);
     }
 
     /*

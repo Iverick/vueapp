@@ -10,7 +10,9 @@ export default new Vuex.Store({
     // Stores details about all listings
     listing_summaries: [],
     // Stores details about a specific listing
-    listings: []
+    listings: [],
+    // Authentication status
+    auth: false
   },
 
   mutations: {
@@ -24,6 +26,10 @@ export default new Vuex.Store({
     },
 
     addData(state, { route, data }) {
+      if (data.auth) {
+        state.auth = data.auth;
+      }
+
       if (route === 'listing') {
         state.listings.push(data.listing);
       } else {
