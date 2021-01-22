@@ -10012,7 +10012,10 @@ module.exports = Cancel;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__router__ = __webpack_require__(104);
+
 
 
 
@@ -10044,8 +10047,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
           state.saved.splice(index, 1);
         }
       } else {
-        // Redirect to login page if user is not logged in
-        __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */].push('/login');
+        // Redirect to the login page if user is not logged in
+        __WEBPACK_IMPORTED_MODULE_3__router__["a" /* default */].push('/login');
       }
     },
     addData: function addData(state, _ref) {
@@ -10060,6 +10063,24 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
         state.listings.push(data.listing);
       } else {
         state.listing_summaries = data.listings;
+      }
+    }
+  },
+
+  actions: {
+    toggleSaved: function toggleSaved(_ref2, id) {
+      var commit = _ref2.commit,
+          state = _ref2.state;
+
+      if (state.auth) {
+        // Make a POST request to the server and update the state after request
+        // promise is resolved.
+        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/user/toggle_saved', { id: id }).then(function () {
+          return commit('toggle_saved', id);
+        });
+      } else {
+        // Redirect to the login page if user is not logged in
+        __WEBPACK_IMPORTED_MODULE_3__router__["a" /* default */].push('/login');
       }
     }
   },
@@ -11204,7 +11225,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     toggleSaved: function toggleSaved() {
-      this.$store.commit('toggleSaved', this.id);
+      this.$store.dispatch('toggleSaved', this.id);
       // console.log(this.$store.state.saved);
     }
   },

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 import router from './router';
 
 Vue.use(Vuex);
@@ -27,7 +28,7 @@ export default new Vuex.Store({
           state.saved.splice(index, 1);
         }
       } else {
-      // Redirect to login page if user is not logged in
+        // Redirect to the login page if user is not logged in
         router.push('/login');
       }
     },
@@ -41,6 +42,20 @@ export default new Vuex.Store({
         state.listings.push(data.listing);
       } else {
         state.listing_summaries = data.listings;
+      }
+    }
+  },
+
+  actions: {
+    toggleSaved({ commit, state }, id) {
+      if (state.auth) {
+        // Make a POST request to the server and update the state after request
+        // promise is resolved.
+        axios.post(`/api/user/toggle_saved`, { id }).then( 
+          () => commit('toggle_saved', id));
+      } else {
+        // Redirect to the login page if user is not logged in
+        router.push('/login');
       }
     }
   },
