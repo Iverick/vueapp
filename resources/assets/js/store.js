@@ -1,9 +1,15 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import axios from 'axios';
-import router from './router';
+import Vue from 'vue'
+import Vuex from 'vuex'
+import router from './router'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
+
+import axios from 'axios'
+
+axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': window.csrf_token
+}
 
 export default new Vuex.Store({
   state: {
@@ -34,10 +40,11 @@ export default new Vuex.Store({
     },
 
     addData(state, { route, data }) {
+      // save authentication data from the host
       if (data.auth) {
         state.auth = data.auth;
-      }
-
+      }      
+      // push the new data into the Vuex store
       if (route === 'listing') {
         state.listings.push(data.listing);
       } else {
@@ -48,11 +55,14 @@ export default new Vuex.Store({
 
   actions: {
     toggleSaved({ commit, state }, id) {
+      // Toggle only if user is logged in
       if (state.auth) {
         // Make a POST request to the server and update the state after request
         // promise is resolved.
-        axios.post(`/api/user/toggle_saved`, { id }).then( 
-          () => commit('toggle_saved', id));
+        axios.post('/api/user/toggle_saved', { id })
+          .then(
+            () => commit('toggleSaved', id)
+        );
       } else {
         // Redirect to the login page if user is not logged in
         router.push('/login');

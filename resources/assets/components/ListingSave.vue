@@ -16,7 +16,6 @@
     methods: {
       toggleSaved() {
         this.$store.dispatch('toggleSaved', this.id);
-        // console.log(this.$store.state.saved);
       }
     },
 
