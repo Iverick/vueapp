@@ -1,11 +1,12 @@
 ## About the project
 
-This project developed purely for sake of exploring the basic functionality of the Laravel and Vue frameworks. It presents a mockup housing marketplace, that is able to display the list of stored properties and detailed description about each property.
+Created according to guidelines from (https://www.packtpub.com/product/full-stack-vue-js-2-and-laravel-5/9781788299589).
+The application presents a mockup housing marketplace, that is able to display the list of stored properties and detailed description about each property.
 
 
 ## Start the project locally
 
-Best way to run this project is using the preconfigured Laravel Homestead virtual box.
+The best way to run this project is using the preconfigured Laravel Homestead virtual box.
 
 ### Required to install
 
