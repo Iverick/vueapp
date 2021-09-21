@@ -1,6 +1,7 @@
 ## About the project
 
 Created according to guidelines from (https://www.packtpub.com/product/full-stack-vue-js-2-and-laravel-5/9781788299589).
+
 The application presents a mockup housing marketplace, that is able to display the list of stored properties and detailed description about each property.
 
 
